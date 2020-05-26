@@ -1,5 +1,49 @@
 export const ERR = 0;
 
+let config;
+
+/**
+ * Initialize the configer, this should be
+ * called only once when the app started
+ * 
+ * @optional `cols` Number of columns per row, default is 2
+ * @optional `components` Initial components
+ */
+function initConfiger(cols=2, components=[]) {
+  config = {
+    cols: cols,
+    components,
+  };
+}
+
+/**
+ * Add a config the configer
+ * 
+ * @require `component` The component
+ * @optional `props` Props applied to the component, default is empty
+ * @optional `description` Description of the component, default is 'No description'
+ */
+function addConfig(component, props={}, description="No description") {
+  if(!config) {
+    return ERR;
+  }
+  config.components.push({
+    component: component,
+    description: description,
+    props: props,
+  });
+}
+
+/**
+ * Get the config
+ */
+function getConfig() {
+  if(!config) {
+    return ERR;
+  }
+  return config;
+}
+
 /**
  * Shallow validate the object, only validate
  * the first keys, i.e. the nested object keys
@@ -50,4 +94,10 @@ function _hasKey(config, key) {
   return config.hasOwnProperty(key);
 }
 
-export { extract, shallowValidate };
+export {
+  extract,
+  shallowValidate,
+  initConfiger,
+  addConfig,
+  getConfig
+};

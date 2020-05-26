@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallowValidate, extract } from './configer';
+import { shallowValidate, extract, getConfig, ERR } from './configer';
 import './Layout.css';
 import Component from './Component';
 
@@ -21,7 +21,12 @@ function renderGrid(components, index, colPerRow) {
 
 export default function Layout({ config }) {
   if(!config) {
-    return <div>Invalid config provided</div>
+    if(getConfig() === ERR) {
+      return <div>Invalid config provided</div>
+    }
+    else {
+      config = getConfig();
+    }
   }
 
   // Shallow validate the config
@@ -33,6 +38,9 @@ export default function Layout({ config }) {
   // Extract values
   const colPerRow = extract(config, "cols", 2);
   const components = extract(config, "components");
+  console.log(config);
+  console.log(components);
+  console.log(config.components);
 
   return (
     <div className="container-fluid">
