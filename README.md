@@ -7,7 +7,6 @@ react-cview is not published to npm yet, run the following commands to test it i
 ```sh
 git clone https://github.com/NielXu/react-cview.git
 cd react-cview
-npm install
 npm link
 
 cd /path/to/your/local/project
@@ -33,21 +32,41 @@ ReactDOM.render(
 );
 ```
 
-# Config
-The documentation will be rendered based on the configuration provided, here are a list of fields that can be configured.
+To develop at local simply do `npm run build` after you modify the files under src folder, then the component will be updated automatically.
 
-- `cols(optional)` Control how many components will be shown per row
-- `components(required)` A list of components with the following properties
-    - `component(required)` The actual component that will be rendered
-    - `description(optional)` The description of this component
-    - `props(optional)` A list of props that will be applied to the component with the following properties
-        - `name(required)` Name of the property
-        - `value(required)` The value of the property
-        - `editable(optional)` Whether or not this property can be tested and edited
-        - `type(optional)` The type of the value
-        - `required(optional)` Whether or not this property is required
-        - `doc(optional)` The documentation of this property
 
+# Props
+|Name|required|type|default|description|
+|---|---|---|---|---|
+|config|true|object||The config that controls the components and documentation
+|url|false|string|'cview'|The url that will be used to browse the components
+
+### Config
+The documentation will be rendered based on the configuration provided, here are the fields that can be configured.
+
+|Name|required|type|default|description|
+|---|---|---|---|---|
+|components|true|array||A list of components with configuration
+|cols|false|integer|2|Number of columns per row
+
+### components
+|Name|required|type|default|description|
+|---|---|---|---|---|
+|component|true|function \| class||The component that will be rendered
+|description|false|string|'No description'|The description of the component
+|props|false|array|[]|A list of props that will be applied to the component with documentation
+
+### props
+|Name|required|type|default|description|
+|---|---|---|---|---|
+|name|true|string||The name of the prop
+|value|true|string||The value of the prop
+|required|true|boolean||Whether this prop is required by the component or not
+|editable|false|boolean|false|Whether this prop can be tested and edited or not
+|type|false|string|'any'|The type of the prop
+|doc|false|string|''|The documentation of this prop
+
+# Example
 An example of a valid config
 
 ```
