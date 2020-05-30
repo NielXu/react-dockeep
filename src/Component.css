@@ -1,15 +1,14 @@
 .component-wrapper {
-  border: 1px solid rgb(209, 202, 216);
   width: 100%;
+  max-width: 75%;
   height: 100%;
   padding: 10px;
   overflow: auto;
-  border-radius: 10px;
 }
 
 .component-props-doc-container {
   padding: 10px;
-  border-bottom: 1px solid rgb(162, 157, 167);
+  margin-bottom: 2.5rem;
 }
 
 .component-props-container {
@@ -27,11 +26,18 @@
 }
 
 .component-desc {
+  font-size: 1.25rem;
+  font-weight: 300;
+}
+
+.title-desc-section {
   padding: 10px;
   padding-bottom: 5px;
-  font-size: 17px;
-  font-weight: 500;
-  border-bottom: 1px solid rgb(209, 202, 216);
+  margin-bottom: 2.5rem;
+}
+
+.component-test-section {
+
 }
 
 .props-input-warn {
@@ -45,4 +51,10 @@
 
 .badge {
   line-height: 1.5 !important;
+}
+
+.component-box {
+  border: .2rem solid #ececec;
+  padding: 1rem;
+  border-radius: 8px;
 }

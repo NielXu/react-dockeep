@@ -17,7 +17,7 @@ function initConfiger(cols=2, components=[]) {
 }
 
 /**
- * Add a config the configer
+ * Add a config to the configer
  * 
  * @require `component` The component
  * @optional `props` Props applied to the component, default is empty

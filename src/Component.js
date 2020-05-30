@@ -2,7 +2,7 @@ import React from 'react';
 import { ERR, shallowValidate, extract } from './configer';
 import './Component.css';
 
-const COMPONENT_CONFIG_REQUIRES = ["component"];
+const COMPONENT_CONFIG_REQUIRES = ["component", "name"];
 const COMPONENT_PROPS_DOC_REQUIRES = ["name", "required"];
 const COMPONENT_PROPS_REQUIRES = ["name", "value"];
 
@@ -20,18 +20,28 @@ export default class Component extends React.Component {
       return;
     }
 
+    this.state = {...this.extractConfig(config)};
+  }
+
+  componentWillReceiveProps = (next) => {
+    this.setState({ ...this.extractConfig(next.config) });
+  }
+
+  extractConfig = (config) => {
+    // Extract the name
+    const name = extract(config, "name");
     // Extract the component
     const component = extract(config, "component");
     // Extract the description(optional)
     const componentDesc = extract(config, "description", "No description");
     // Extract the props(optional)
     const componentProps = extract(config, "props", []);
-
-    this.state = {
+    return {
+      name: name,
       component: component,
       description: componentDesc,
       props: componentProps,
-    };
+    }
   }
 
   onPropsInputChange = (index, e) => {
@@ -105,10 +115,13 @@ export default class Component extends React.Component {
    * Render the description of the component
    */
   renderComponentDesc() {
-    const desc = this.state.description;
+    const { name, description } = this.state;
     return (
-      <div className="component-desc">
-        {desc}
+      <div className="title-desc-section">
+        <h1>{name}</h1>
+        <div className="component-desc">
+          {description}
+        </div>
       </div>
     )
   }
@@ -123,6 +136,7 @@ export default class Component extends React.Component {
     }
     return (
       <div className="component-props-doc-container">
+        <h1>Props</h1>
         {
           propsDoc.map((e, i) => {
             const validation = shallowValidate(e, COMPONENT_PROPS_DOC_REQUIRES);
@@ -147,22 +161,39 @@ export default class Component extends React.Component {
     )
   }
 
-  render() {
-    if(this.state.error) {
-      return <div className="component-wrapper">{this.state.error}</div>
-    }
+  renderComponent() {
     const Component = this.state.component;
     const props = this.state.props;
     return (
-      <div className="component-wrapper">
+      <div className="component-box">
         {
           isStateless(Component)?
           Component(this.resolveProps(props))
             : <Component {...this.resolveProps(props)}/>
         }
+      </div>
+    )
+  }
+
+  renderExample() {
+    return (
+      <div>
+        <h1>Example</h1>
+        {this.renderComponent()}
+        {this.renderProps()}
+      </div>
+    )
+  }
+
+  render() {
+    if(this.state.error) {
+      return <div className="component-wrapper">{this.state.error}</div>
+    }
+    return (
+      <div className="component-wrapper">
         {this.renderComponentDesc()}
         {this.renderPropsDoc()}
-        {this.renderProps()}
+        {this.renderExample()}
       </div>
     )
   }

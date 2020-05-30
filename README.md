@@ -52,6 +52,7 @@ The documentation will be rendered based on the configuration provided, here are
 ### components
 |Name|required|type|default|description|
 |---|---|---|---|---|
+|name|true|string||The name of the component
 |component|true|function \| class||The component that will be rendered
 |description|false|string|'No description'|The description of the component
 |props|false|array|[]|A list of props that will be applied to the component with documentation
