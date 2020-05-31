@@ -63,6 +63,7 @@ The documentation will be rendered based on the configuration provided, here are
 |name|true|string||The name of the prop
 |value|true|string||The value of the prop
 |required|true|boolean||Whether this prop is required by the component or not
+|default|false|any||The default value of the prop
 |editable|false|boolean|false|Whether this prop can be tested and edited or not
 |type|false|string|'any'|The type of the prop
 |doc|false|string|''|The documentation of this prop
