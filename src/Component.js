@@ -56,6 +56,17 @@ export default class Component extends React.Component {
     });
   }
 
+  onPropsToggle = (index, value) => {
+    const props = this.state.props;
+    this.setState({
+      props: [
+        ...props.slice(0, index),
+        {...props[index], value: value},
+        ...props.slice(index+1)
+      ],
+    });
+  }
+
   resolveProps = (props) => {
     let resolvedProps = {};
     props.forEach(e => {
@@ -82,8 +93,8 @@ export default class Component extends React.Component {
             // value
             let value = extract(e, "value");
             const valueType = typeof value;
-            const warn = (valueType !== "string" && valueType !== "number")?
-              `Warn: CView currently only supports string and number type as prop value, the detected type of the given value is: ${valueType}`
+            const warn = (valueType !== "string" && valueType !== "number" && valueType !== "boolean")?
+              `Warn: CView currently only supports string, number and boolean type as prop value, the detected type of the given value is: ${valueType}`
               : "";
             value = valueType === "object"? JSON.stringify(value) : value;
             // editable
@@ -92,16 +103,32 @@ export default class Component extends React.Component {
             return (
               <div className="props-input-container">
                 <div className="input-group" key={i}>
-                  <div className="input-group-prepend">
-                    <span className="input-group-text" id="basic-addon1">{name}</span>
-                  </div>
-                  <input
-                    type="text"
-                    className="form-control"
-                    value={value}
-                    disabled={!editable || warn}
-                    onChange={(e)=>this.onPropsInputChange(i, e)}
-                  />
+                  {valueType === "boolean"? (
+                    <>
+                      <span className="input-group-text" id="basic-addon1" style={{ marginRight: 20 }}>{name}</span>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" value="option1" checked={value === true} onChange={()=>this.onPropsToggle(i, true)}/>
+                        <label class="form-check-label" for="inlineCheckbox1">true</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" value="option2" checked={value === false} onChange={()=>this.onPropsToggle(i, false)}/>
+                        <label class="form-check-label" for="inlineCheckbox2">false</label>
+                      </div>
+                    </>
+                  ) : (
+                    <>
+                      <div className="input-group-prepend">
+                        <span className="input-group-text" id="basic-addon1">{name}</span>
+                      </div>
+                      <input
+                        type="text"
+                        className="form-control"
+                        value={value}
+                        disabled={!editable || warn}
+                        onChange={(e)=>this.onPropsInputChange(i, e)}
+                      />
+                    </>
+                  )}
                 </div>
                 {warn && <div className="props-input-warn">{warn}</div>}
               </div>
