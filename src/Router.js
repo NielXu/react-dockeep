@@ -1,14 +1,14 @@
 import React from 'react';
 import Component from './Component';
 
+const COMPONENT_CONFIG_REQUIRES = ["component", "name"];
+
 export default class Router extends React.Component {
   constructor(props) {
     super(props);
-    
-    const components = props.components;
 
     let routeMap = [];
-    components.forEach(e => {
+    this.props.components.forEach(e => {
       routeMap.push({
         name: e.name.toLowerCase(),
         config: e,

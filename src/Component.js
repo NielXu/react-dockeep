@@ -25,6 +25,7 @@ export default class Component extends React.Component {
 
   componentWillReceiveProps = (next) => {
     this.setState({ ...this.extractConfig(next.config) });
+    window.scrollTo(0, 0);
   }
 
   extractConfig = (config) => {
@@ -137,26 +138,37 @@ export default class Component extends React.Component {
     return (
       <div className="component-props-doc-container">
         <h1>Props</h1>
-        {
-          propsDoc.map((e, i) => {
-            const validation = shallowValidate(e, COMPONENT_PROPS_DOC_REQUIRES);
-            if(validation) {
-              return <div>PropsDoc config missing key: {validation}</div>
-            }
-            const name = extract(e, "name");
-            const required = extract(e, "required");
-            const doc = extract(e, "doc", "");
-            const type = extract(e, "type", "any");
-            return (
-              <div className="component-props-doc-row" key={i}>
-                <span className={required? "badge badge-primary" : "badge badge-secondary"}>
-                  {name} ({required? "required": "optional"}) <span className="badge badge-light">{type}</span>
-                </span>
-                <div className="component-props-doc">{doc}</div>
-              </div>
-            )
-          })
-        }
+        <table className="table table-striped table-bordered">
+          <thead>
+            <th scope="col">Name</th>
+            <th scope="col">Required</th>
+            <th scope="col">Type</th>
+            <th scope="col">Default</th>
+            <th scope="col">Description</th>
+          </thead>
+          <tbody>
+            {propsDoc.map((e, i) => {
+              const validation = shallowValidate(e, COMPONENT_PROPS_DOC_REQUIRES);
+              if(validation) {
+                return <div>PropsDoc config missing key: {validation}</div>
+              }
+              const name = extract(e, "name");
+              const required = extract(e, "required");
+              const doc = extract(e, "doc", "");
+              const type = extract(e, "type", "any");
+              const def = extract(e, "default", null);
+              return (
+                <tr>
+                  <td scope="row">{name}</td>
+                  <td scope="row">{String(required)}</td>
+                  <td scope="row">{type}</td>
+                  <td scope="row">{def}</td>
+                  <td scope="row">{doc}</td>
+                </tr>
+              )
+            })}
+          </tbody>
+        </table>
       </div>
     )
   }
