@@ -107,11 +107,11 @@ export default class Component extends React.Component {
                     <>
                       <span className="input-group-text" id="basic-addon1" style={{ marginRight: 20 }}>{name}</span>
                       <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" value="option1" checked={value === true} onChange={()=>this.onPropsToggle(i, true)}/>
+                        <input disabled={!editable} class="form-check-input" type="checkbox" value="option1" checked={value === true} onChange={()=>this.onPropsToggle(i, true)}/>
                         <label class="form-check-label" for="inlineCheckbox1">true</label>
                       </div>
                       <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" value="option2" checked={value === false} onChange={()=>this.onPropsToggle(i, false)}/>
+                        <input disabled={!editable} class="form-check-input" type="checkbox" value="option2" checked={value === false} onChange={()=>this.onPropsToggle(i, false)}/>
                         <label class="form-check-label" for="inlineCheckbox2">false</label>
                       </div>
                     </>
