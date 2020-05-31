@@ -1,5 +1,7 @@
 import React from 'react';
-import { ERR, shallowValidate, extract } from './configer';
+import { shallowValidate, extract } from './configer';
+import { LiveProvider, LiveEditor, LiveError, LivePreview } from 'react-live';
+import theme from "prism-react-renderer/themes/github";
 import './Component.css';
 
 const COMPONENT_CONFIG_REQUIRES = ["component", "name"];
@@ -215,11 +217,17 @@ export default class Component extends React.Component {
   }
 
   renderExample() {
+    const name = this.state.name;
     return (
       <div>
         <h1>Example</h1>
-        {this.renderComponent()}
-        {this.renderProps()}
+        <LiveProvider code={`<${name}/>`} scope={{[name]: this.state.component}}>
+          <LivePreview className="component-box"/>
+          <LiveError className="component-error"/>
+          <LiveEditor theme={theme} className="component-editor"/>
+        </LiveProvider>
+        {/* {this.renderComponent()}
+        {this.renderProps()} */}
       </div>
     )
   }
