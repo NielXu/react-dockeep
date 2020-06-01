@@ -1,6 +1,7 @@
 import React from 'react';
 import { shallowValidate, extract } from './configer';
 import { LiveProvider, LiveEditor, LiveError, LivePreview } from 'react-live';
+import { applyPropsCode, resolveProps } from './tool';
 import theme from "prism-react-renderer/themes/github";
 import './Component.css';
 
@@ -67,14 +68,6 @@ export default class Component extends React.Component {
         ...props.slice(index+1)
       ],
     });
-  }
-
-  resolveProps = (props) => {
-    let resolvedProps = {};
-    props.forEach(e => {
-      resolvedProps[e.name] = e.value;
-    });
-    return resolvedProps;
   }
 
   /**
@@ -209,8 +202,8 @@ export default class Component extends React.Component {
       <div className="component-box">
         {
           isStateless(Component)?
-          Component(this.resolveProps(props))
-            : <Component {...this.resolveProps(props)}/>
+          Component(resolveProps(props))
+            : <Component {...resolveProps(props)}/>
         }
       </div>
     )
@@ -218,16 +211,15 @@ export default class Component extends React.Component {
 
   renderExample() {
     const name = this.state.name;
+    const props = this.state.props;
     return (
       <div>
         <h1>Example</h1>
-        <LiveProvider code={`<${name}/>`} scope={{[name]: this.state.component}}>
+        <LiveProvider code={applyPropsCode(name, props)} scope={{[name]: this.state.component}}>
           <LivePreview className="component-box"/>
           <LiveError className="component-error"/>
           <LiveEditor theme={theme} className="component-editor"/>
         </LiveProvider>
-        {/* {this.renderComponent()}
-        {this.renderProps()} */}
       </div>
     )
   }
