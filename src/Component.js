@@ -163,7 +163,6 @@ export default class Component extends React.Component {
         <table className="table table-striped table-bordered">
           <thead>
             <th scope="col">Name</th>
-            <th scope="col">Required</th>
             <th scope="col">Type</th>
             <th scope="col">Default</th>
             <th scope="col">Description</th>
@@ -181,8 +180,7 @@ export default class Component extends React.Component {
               const def = extract(e, "default", null);
               return (
                 <tr>
-                  <td scope="row">{name}</td>
-                  <td scope="row">{String(required)}</td>
+                  <td scope="row">{name} {required && <span class="badge badge-light" style={{ marginLeft: 15 }}>required</span>}</td>
                   <td scope="row">{type}</td>
                   <td scope="row">{def}</td>
                   <td scope="row">{doc}</td>

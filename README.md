@@ -75,6 +75,7 @@ An example of a valid config
 const CONFIG = {
   components: [
     {
+      name: "Select",
       component: Select,
       description: "A well styled select component from react-select",
       props: [
@@ -89,6 +90,7 @@ const CONFIG = {
       ],
     },
     {
+      name: "CSelect",
       component: CSelect,
       description: "Custom selection",
       props: [
@@ -103,9 +105,15 @@ const CONFIG = {
       ]
     },
     {
+      name: "Input"
       component: Input,
     }
   ],
 }
 ```
 
+# TODO
+
+###### Publish v1.0.0
+- [ ] Proper warning and error display
+- [ ] Figure out a way when user deleted required props and error is thrown
