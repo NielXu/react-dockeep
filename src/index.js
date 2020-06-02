@@ -9,7 +9,7 @@ export default function({ children, config, url="cview" }) {
   return (
     <BrowserRouter>
       <Switch>
-        <Route path="/cview" render={() => <Layout config={config}/>}/>
+        <Route path={`/${url}`} render={() => <Layout url={url} config={config}/>}/>
         <Route render={() => children}/>
       </Switch>
     </BrowserRouter>

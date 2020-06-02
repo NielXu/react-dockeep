@@ -55,8 +55,8 @@ export default class Layout extends React.Component {
   
     return (
       <div className="layout-wrapper full-wrapper">
-        <Sidebar components={components} onSelect={this.onSidebarSelect}/>
-        <Router components={components} side={this.state.side}/>
+        <Sidebar url={this.props.url} components={components} onSelect={this.onSidebarSelect}/>
+        <Router url={this.props.url} components={components} side={this.state.side}/>
       </div>
     )
   }

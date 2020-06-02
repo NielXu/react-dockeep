@@ -20,13 +20,14 @@ export default class Router extends React.Component {
   }
 
   render() {
+    const url = this.props.url;
     return (
       <>
         <Switch>
-          <Route exact path="/cview" render={()=><Redirect to={`/cview/${this.state.routeMap[0].name}`}/>}/>
+          <Route exact path={`/${url}`} render={()=><Redirect to={`/${url}/${this.state.routeMap[0].name}`}/>}/>
           {
             this.state.routeMap.map(e => {
-              return <Route key={e.name} exact path={`/cview/${e.name}`} render={()=><Component config={e.config}/>}/>
+              return <Route key={e.name} exact path={`/${url}/${e.name}`} render={()=><Component config={e.config}/>}/>
             })
           }
         </Switch>
