@@ -18,7 +18,12 @@
   transition: color .2s ease-out;
 }
 
-.sidebar-list-item:hover {
-  cursor: pointer;
+.sidebar-item-link {
+  color: rgba(26,26,26,.75);
+  transition: color .2s ease-out;
+}
+
+.sidebar-item-link:hover {
+  text-decoration: none;
   color: #999;
 }
