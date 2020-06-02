@@ -116,4 +116,4 @@ const CONFIG = {
 
 ###### Publish v1.0.0
 - [ ] Proper warning and error display
-- [ ] Figure out a way when user deleted required props and error is thrown
+- [ ] ~Figure out a way when user deleted required props and error is thrown~ This only happens in react development mode
