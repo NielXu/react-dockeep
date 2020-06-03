@@ -115,5 +115,6 @@ const CONFIG = {
 
 ###### Publish v1.0.0
 - [ ] index.d.ts documentaion
+- [ ] Add example
 - [x] Proper warning and error display
-- [x] ~Figure out a way when user deleted required props and error is thrown~ This only happens in react development mode
+- [x] ~Figure out a way when user deleted required props and error is thrown~ (This only happens in react development mode)
