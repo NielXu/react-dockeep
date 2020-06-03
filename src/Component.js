@@ -72,17 +72,19 @@ export default class Component extends React.Component {
         <h1>Props</h1>
         <table className="table table-striped table-bordered">
           <thead>
-            <th scope="col">Name</th>
-            <th scope="col">Type</th>
-            <th scope="col">Default</th>
-            <th scope="col">Description</th>
+            <tr>
+              <th>Name</th>
+              <th>Type</th>
+              <th>Default</th>
+              <th>Description</th>
+            </tr>
           </thead>
           <tbody>
             {propsDoc.map((e, i) => {
               const validation = shallowValidate(e, COMPONENT_PROPS_DOC_REQUIRES);
               if(validation) {
                 return (
-                  <tr scope="row">
+                  <tr>
                     <td colSpan="4"><Error message={`Config missing key: ${validation}`} trace={e}/></td>
                   </tr>
                 )
@@ -94,10 +96,10 @@ export default class Component extends React.Component {
               const def = extract(e, "default", null);
               return (
                 <tr>
-                  <td scope="row">{name} {required && <span class="badge badge-light" style={{ marginLeft: 15 }}>required</span>}</td>
-                  <td scope="row">{type}</td>
-                  <td scope="row">{def}</td>
-                  <td scope="row">{doc}</td>
+                  <td>{name} {required && <span className="badge badge-light" style={{ marginLeft: 15 }}>required</span>}</td>
+                  <td>{type}</td>
+                  <td>{def}</td>
+                  <td>{doc}</td>
                 </tr>
               )
             })}
