@@ -27,11 +27,6 @@ export default class Component extends React.Component {
     this.state = {...this.extractConfig(config)};
   }
 
-  componentWillReceiveProps = (next) => {
-    this.setState({ ...this.extractConfig(next.config) });
-    window.scrollTo(0, 0);
-  }
-
   extractConfig = (config) => {
     // Extract the name
     const name = getComponentName(config);
