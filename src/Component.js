@@ -1,13 +1,13 @@
 import React from 'react';
-import { shallowValidate, extract } from './configer';
+import { shallowValidate, extract, ERR } from './configer';
 import { LiveProvider, LiveEditor, LiveError, LivePreview } from 'react-live';
-import { applyPropsCode, resolveProps } from './tool';
+import { applyPropsCode, getComponentName } from './tool';
 import theme from "prism-react-renderer/themes/github";
+import Error from './Error';
 import './Component.css';
 
-const COMPONENT_CONFIG_REQUIRES = ["component", "name"];
-const COMPONENT_PROPS_DOC_REQUIRES = ["name", "required"];
-const COMPONENT_PROPS_REQUIRES = ["name", "value"];
+const COMPONENT_CONFIG_REQUIRES = ["component"];
+const COMPONENT_PROPS_DOC_REQUIRES = ["name", "value", "required"];
 
 export default class Component extends React.Component {
   constructor(props) {
@@ -19,6 +19,7 @@ export default class Component extends React.Component {
     if(validation) {
       this.state = {
         error: `Config missing key: ${validation}`,
+        config: config,
       };
       return;
     }
@@ -33,7 +34,7 @@ export default class Component extends React.Component {
 
   extractConfig = (config) => {
     // Extract the name
-    const name = extract(config, "name");
+    const name = getComponentName(config);
     // Extract the component
     const component = extract(config, "component");
     // Extract the description(optional)
@@ -46,92 +47,6 @@ export default class Component extends React.Component {
       description: componentDesc,
       props: componentProps,
     }
-  }
-
-  onPropsInputChange = (index, e) => {
-    const props = this.state.props;
-    this.setState({
-      props: [
-        ...props.slice(0, index),
-        {...props[index], value: e.target.value},
-        ...props.slice(index+1)
-      ],
-    });
-  }
-
-  onPropsToggle = (index, value) => {
-    const props = this.state.props;
-    this.setState({
-      props: [
-        ...props.slice(0, index),
-        {...props[index], value: value},
-        ...props.slice(index+1)
-      ],
-    });
-  }
-
-  /**
-   * Render each example property, with input field that allow user to test different properties
-   */
-  renderProps() {
-    const props = this.state.props;
-    return (
-      <div className="component-props-container">
-        {
-          props.map((e, i) => {
-            const validation = shallowValidate(e, COMPONENT_PROPS_REQUIRES);
-            if(validation) {
-              return <div>Props config missing key: {validation}</div>
-            }
-            // name
-            const name = extract(e, "name");
-            // value
-            let value = extract(e, "value");
-            const valueType = typeof value;
-            const warn = (valueType !== "string" && valueType !== "number" && valueType !== "boolean")?
-              `Warn: CView currently only supports string, number and boolean type as prop value, the detected type of the given value is: ${valueType}`
-              : "";
-            value = valueType === "object"? JSON.stringify(value) : value;
-            // editable
-            const editable = extract(e, "editable", false);
-
-            return (
-              <div className="props-input-container">
-                <div className="input-group" key={i}>
-                  {valueType === "boolean"? (
-                    <>
-                      <span className="input-group-text" id="basic-addon1" style={{ marginRight: 20 }}>{name}</span>
-                      <div class="form-check form-check-inline">
-                        <input disabled={!editable} class="form-check-input" type="checkbox" value="option1" checked={value === true} onChange={()=>this.onPropsToggle(i, true)}/>
-                        <label class="form-check-label" for="inlineCheckbox1">true</label>
-                      </div>
-                      <div class="form-check form-check-inline">
-                        <input disabled={!editable} class="form-check-input" type="checkbox" value="option2" checked={value === false} onChange={()=>this.onPropsToggle(i, false)}/>
-                        <label class="form-check-label" for="inlineCheckbox2">false</label>
-                      </div>
-                    </>
-                  ) : (
-                    <>
-                      <div className="input-group-prepend">
-                        <span className="input-group-text" id="basic-addon1">{name}</span>
-                      </div>
-                      <input
-                        type="text"
-                        className="form-control"
-                        value={value}
-                        disabled={!editable || warn}
-                        onChange={(e)=>this.onPropsInputChange(i, e)}
-                      />
-                    </>
-                  )}
-                </div>
-                {warn && <div className="props-input-warn">{warn}</div>}
-              </div>
-            )
-          })
-        }
-      </div>
-    )
   }
 
   /**
@@ -171,7 +86,11 @@ export default class Component extends React.Component {
             {propsDoc.map((e, i) => {
               const validation = shallowValidate(e, COMPONENT_PROPS_DOC_REQUIRES);
               if(validation) {
-                return <div>PropsDoc config missing key: {validation}</div>
+                return (
+                  <tr scope="row">
+                    <td colSpan="4"><Error message={`Config missing key: ${validation}`} trace={e}/></td>
+                  </tr>
+                )
               }
               const name = extract(e, "name");
               const required = extract(e, "required");
@@ -193,20 +112,9 @@ export default class Component extends React.Component {
     )
   }
 
-  renderComponent() {
-    const Component = this.state.component;
-    const props = this.state.props;
-    return (
-      <div className="component-box">
-        {
-          isStateless(Component)?
-          Component(resolveProps(props))
-            : <Component {...resolveProps(props)}/>
-        }
-      </div>
-    )
-  }
-
+  /**
+   * Render the example of the component
+   */
   renderExample() {
     const name = this.state.name;
     const props = this.state.props;
@@ -224,7 +132,7 @@ export default class Component extends React.Component {
 
   render() {
     if(this.state.error) {
-      return <div className="component-wrapper">{this.state.error}</div>
+      return <Error message={this.state.error} trace={this.state.config}/>
     }
     return (
       <div className="component-wrapper">
@@ -234,8 +142,4 @@ export default class Component extends React.Component {
       </div>
     )
   }
-}
-
-function isStateless(Component) {
-  return !Component.prototype.render;
 }

@@ -47,13 +47,12 @@ The documentation will be rendered based on the configuration provided, here are
 |Name|required|type|default|description|
 |---|---|---|---|---|
 |components|true|array||A list of components with configuration
-|cols|false|integer|2|Number of columns per row
 
 ### components
 |Name|required|type|default|description|
 |---|---|---|---|---|
-|name|true|string||The name of the component
 |component|true|function \| class||The component that will be rendered
+|name|false|string|The given component's name|The name of the component
 |description|false|string|'No description'|The description of the component
 |props|false|array|[]|A list of props that will be applied to the component with documentation
 
@@ -116,5 +115,5 @@ const CONFIG = {
 
 ###### Publish v1.0.0
 - [ ] index.d.ts documentaion
-- [ ] Proper warning and error display
+- [x] Proper warning and error display
 - [x] ~Figure out a way when user deleted required props and error is thrown~ This only happens in react development mode

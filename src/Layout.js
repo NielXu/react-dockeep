@@ -2,62 +2,50 @@ import React from 'react';
 import { shallowValidate, extract, getConfig, ERR } from './configer';
 import './Layout.css';
 import Sidebar from './Sidebar.js';
-import Component from './Component';
 import Router from './Router';
+import Error from './Error';
 
 const CONFIG_REQUIRES = ["components"];
+const COMPONENT_CONFIG_REQUIRES = ["component"];
 
-function renderGrid(components, index, colPerRow) {
-  let comps = components.slice(index, index + colPerRow);
-  const colWidth = Math.floor(12 / colPerRow);
+export default function Layout({ config, url }) {
+  if(!config) {
+    if(getConfig() === ERR) {
+      return <Error
+              message={`No config provided`}
+            />
+    }
+    else {
+      config = getConfig();
+    }
+  }
+
+  // Shallow validate the config
+  const validation = shallowValidate(config, CONFIG_REQUIRES);
+  if(validation) {
+    return <Error
+            trace={config}
+            message={`Config missing key: ${validation}`}
+          />
+  }
+
+  // Extract components from config
+  const components = extract(config, "components");
+  for(let i=0;i<components.length;i++) {
+    const comp = components[i];
+    const compValidation = shallowValidate(comp, COMPONENT_CONFIG_REQUIRES);
+    if(compValidation) {
+      return <Error
+                trace={comp}
+                message={`Config missing key: ${compValidation}`}
+            />
+    }
+  }
+
   return (
-    <>
-      {
-        comps.map((e, i) => {
-          return <Component config={e}/>
-        })
-      }
-    </>
-  );
-}
-
-export default class Layout extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      side: "",
-    };
-  }
-
-  onSidebarSelect = (name) => {
-    this.setState({ side: name.toLowerCase() });
-  }
-
-  render() {
-    const { config } = this.props;
-    if(!config) {
-      if(getConfig() === ERR) {
-        return <div>Invalid config provided</div>
-      }
-      else {
-        config = getConfig();
-      }
-    }
-  
-    // Shallow validate the config
-    const validation = shallowValidate(config, CONFIG_REQUIRES);
-    if(validation) {
-      return <div>Config missing key: {validation}</div>
-    }
-  
-    // Extract values
-    const components = extract(config, "components");
-  
-    return (
-      <div className="layout-wrapper full-wrapper">
-        <Sidebar url={this.props.url} components={components} onSelect={this.onSidebarSelect}/>
-        <Router url={this.props.url} components={components} side={this.state.side}/>
-      </div>
-    )
-  }
+    <div className="layout-wrapper full-wrapper">
+      <Sidebar url={url} components={components}/>
+      <Router url={url} components={components}/>
+    </div>
+  )
 }

@@ -1,5 +1,6 @@
 import React from 'react';
 import Component from './Component';
+import { getComponentName } from './tool';
 import { Switch, Route, Redirect } from 'react-router-dom';
 
 export default class Router extends React.Component {
@@ -9,7 +10,7 @@ export default class Router extends React.Component {
     let routeMap = [];
     this.props.components.forEach(e => {
       routeMap.push({
-        name: e.name.toLowerCase(),
+        name: getComponentName(e).toLowerCase(),
         config: e,
       });
     });
@@ -27,7 +28,8 @@ export default class Router extends React.Component {
           <Route exact path={`/${url}`} render={()=><Redirect to={`/${url}/${this.state.routeMap[0].name}`}/>}/>
           {
             this.state.routeMap.map(e => {
-              return <Route key={e.name} exact path={`/${url}/${e.name}`} render={()=><Component config={e.config}/>}/>
+              const name = getComponentName(e.config);
+              return <Route key={name} exact path={`/${url}/${name}`} render={()=><Component config={e.config}/>}/>
             })
           }
         </Switch>

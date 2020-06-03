@@ -1,3 +1,11 @@
+import { extract } from './configer';
+
+/**
+ * Get code that applied props to the given component
+ * 
+ * @param {String} name
+ * @param {Object} props
+ */
 function applyPropsCode(name, props) {
   if(props.length === 0) {
     return `<${name}/>`;
@@ -26,7 +34,18 @@ function resolveProps(props) {
   return resolvedProps;
 }
 
+/**
+ * Get the name of the component from the component config, if it
+ * is not provided, try to get it from the function name or class name.
+ * 
+ * @param {Object} config 
+ */
+function getComponentName(config) {
+  return extract(config, "name", config.component? config.component.name : "");
+}
+
 export {
   applyPropsCode,
   resolveProps,
+  getComponentName,
 };
