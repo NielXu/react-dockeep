@@ -7,7 +7,7 @@ import Error from './Error';
 import './Component.css';
 
 const COMPONENT_CONFIG_REQUIRES = ["component"];
-const COMPONENT_PROPS_DOC_REQUIRES = ["name", "value", "required"];
+const COMPONENT_PROPS_DOC_REQUIRES = ["name", "value"];
 
 export default class Component extends React.Component {
   constructor(props) {
@@ -90,7 +90,7 @@ export default class Component extends React.Component {
                 )
               }
               const name = extract(e, "name");
-              const required = extract(e, "required");
+              const required = extract(e, "required", false);
               const doc = extract(e, "doc", "");
               const type = extract(e, "type", "any");
               const def = extract(e, "default", null);
