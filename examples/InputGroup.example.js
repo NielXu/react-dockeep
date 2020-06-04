@@ -29,29 +29,26 @@ export const InputGroupConfig = {
   props: [
     {
       name: "label",
-      value: "",
-      required: false,
+      value: "Label",
+      required: true,
       type: "string",
       doc: "The label of the InputGroup"
     },
     {
       name: "disabled",
       value: false,
-      required: false,
       type: "boolean",
       doc: "Whether of not the input field is disabled"
     },
     {
       name: "placeholder",
       value: "",
-      required: false,
       type: "string",
       doc: "The placeholder of the input field"
     },
     {
       name: "feedback",
       value: "",
-      required: false,
       type: "string",
       doc: "The feedback of the input"
     }
