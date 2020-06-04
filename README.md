@@ -7,6 +7,7 @@ react-cview is not published to npm yet, run the following commands to test it i
 ```sh
 git clone https://github.com/NielXu/react-cview.git
 cd react-cview
+npm run build
 npm link
 
 cd /path/to/your/local/project
@@ -15,7 +16,7 @@ npm link react-cview
 
 Then you can import react-cview in your index.js and start using it
 
-```sh
+```javascript
 import React from 'react';
 import ReactDOM from 'react-dom';
 import CView from 'react-cview';
@@ -70,7 +71,7 @@ The documentation will be rendered based on the configuration provided, here are
 # Example
 An example of a valid config
 
-```
+```javascript
 const CONFIG = {
   components: [
     {
