@@ -114,8 +114,9 @@ const CONFIG = {
 
 # TODO
 
-###### Publish v1.0.0
+###### v1.0.0
 - [ ] index.d.ts documentaion
 - [ ] Add example
+- [ ] Rework add config using function, consider using HOC
 - [x] Proper warning and error display
 - [x] ~Figure out a way when user deleted required props and error is thrown~ (This only happens in react development mode)
