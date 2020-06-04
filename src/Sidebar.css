@@ -1,11 +1,5 @@
 .sidebar-wrapper {
-  max-width: 16%;
   background-color: #f7f7f7;
-  padding-left: 15px;
-  padding-right: 15px;
-  padding-top: 20px;
-  display: flex;
-  flex-direction: column;
   border-right: 1px solid #ececec;
 }
 
@@ -21,9 +15,32 @@
 .sidebar-item-link {
   color: rgba(26,26,26,.75);
   transition: color .2s ease-out;
+  overflow: hidden;
 }
 
 .sidebar-item-link:hover {
   text-decoration: none;
   color: #999;
+}
+
+.topbar-search-wrapper {
+  display: flex;
+  flex-direction: row;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.topbar-content {
+  border-top: 1px solid #ececec;
+}
+
+.topbar-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar-search-wrapper {
+  margin-top: 30px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #ececec;
 }

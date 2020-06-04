@@ -43,9 +43,15 @@ export default function Layout({ config, url }) {
   }
 
   return (
-    <div className="layout-wrapper full-wrapper">
-      <Sidebar url={url} components={components}/>
-      <Router url={url} components={components}/>
+    <div className="container-fluid height-wrapper">
+      <div className="row height-wrapper">
+        <div className="col-md-2 sidebar-wrapper">
+          <Sidebar url={url} components={components}/>
+        </div>
+        <div className="col">
+          <Router url={url} components={components}/>
+        </div>
+      </div>
     </div>
   )
 }

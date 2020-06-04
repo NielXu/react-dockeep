@@ -1,5 +1,5 @@
 # react-cview
-react-cview is a lightweight component that allows user to create documentation for their components and view them directly without extra configurations.
+react-cview allows user to create documentation for their components and view them directly with custom configurations.
 
 # Get started
 react-cview is not published to npm yet, run the following commands to test it in your local project:
@@ -7,6 +7,7 @@ react-cview is not published to npm yet, run the following commands to test it i
 ```sh
 git clone https://github.com/NielXu/react-cview.git
 cd react-cview
+npm install
 npm run build
 npm link
 
@@ -113,6 +114,8 @@ const CONFIG = {
 ###### v1.0.0
 - [ ] index.d.ts documentaion
 - [ ] Add example
-- [ ] Rework add config using function, consider using HOC
+- [ ] Tests
+- [ ] Improve add config using functions
+- [ ] Change all bootstrap elements to React Bootstrap
 - [x] Proper warning and error display
 - [x] ~Figure out a way when user deleted required props and error is thrown~ (This only happens in react development mode)

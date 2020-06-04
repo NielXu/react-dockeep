@@ -84,7 +84,7 @@ export default class Component extends React.Component {
               const validation = shallowValidate(e, COMPONENT_PROPS_DOC_REQUIRES);
               if(validation) {
                 return (
-                  <tr>
+                  <tr key="error-msg">
                     <td colSpan="4"><Error message={`Config missing key: ${validation}`} trace={e}/></td>
                   </tr>
                 )
@@ -95,7 +95,7 @@ export default class Component extends React.Component {
               const type = extract(e, "type", "any");
               const def = extract(e, "default", null);
               return (
-                <tr>
+                <tr key={name}>
                   <td>{name} {required && <span className="badge badge-light" style={{ marginLeft: 15 }}>required</span>}</td>
                   <td>{type}</td>
                   <td>{def}</td>
