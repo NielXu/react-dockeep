@@ -64,7 +64,6 @@ The documentation will be rendered based on the configuration provided, here are
 |value|true|string||The value of the prop
 |required|true|boolean||Whether this prop is required by the component or not
 |default|false|any||The default value of the prop
-|editable|false|boolean|false|Whether this prop can be tested and edited or not
 |type|false|string|'any'|The type of the prop
 |doc|false|string|''|The documentation of this prop
 
@@ -82,7 +81,6 @@ const CONFIG = {
         {
           name: "options",
           value: [{value: "foo", label: "FOO"},{value: "bar", label: "BAR"}],
-          editable: false,
           type: "array",
           required: true,
           doc: "Options that can be selected"
@@ -97,7 +95,6 @@ const CONFIG = {
         {
           name: "className",
           value: "custom-className",
-          editable: true,
           type: "array",
           required: false,
           doc: "Options that can be selected"
