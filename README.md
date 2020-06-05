@@ -109,7 +109,7 @@ const CONFIG = {
 }
 ```
 
-To run examples use `npm start` and go to [http://localhost:8080](http://localhost:8080) in your browser, see `/examples` folder for more information
+To run examples use `npm start` and go to [http://localhost:8080](http://localhost:8080) in your browser, see [examples](https://github.com/NielXu/react-cview/tree/master/examples) folder for more information
 
 # TODO
 
