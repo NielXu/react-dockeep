@@ -4,11 +4,13 @@ import CView from '../src/index';
 import { Redirect } from 'react-router-dom';
 import { InputGroupConfig } from './InputGroup.example';
 import { ModalConfig } from './Modal.example';
+import { TopbarConfig } from './Topbar.example';
 
 const CONFIG = {
   components: [
     InputGroupConfig,
-    ModalConfig
+    ModalConfig,
+    TopbarConfig,
   ]
 }
 

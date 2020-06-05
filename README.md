@@ -109,10 +109,12 @@ const CONFIG = {
 }
 ```
 
+To run examples use `npm start` and go to [http://localhost:8080](http://localhost:8080) in your browser, see `/examples` folder for more information
+
 # TODO
 
 ###### v1.0.0
-- [ ] Add example
+- [x] Add example
 - [x] ~Improve add config using functions~ (Push to v1.1.0)
 - [x] Change all bootstrap elements to React Bootstrap
 - [x] Implement the search feature of the sidebar

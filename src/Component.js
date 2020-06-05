@@ -116,7 +116,7 @@ export default class Component extends React.Component {
     const name = this.state.name;
     const props = this.state.props;
     return (
-      <div>
+      <div className="example-section">
         <h1>Example</h1>
         <LiveProvider code={applyPropsCode(name, props)} scope={{[name]: this.state.component}}>
           <LivePreview className="component-box"/>

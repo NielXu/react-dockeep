@@ -73,3 +73,9 @@
 .component-editor textarea:focus {
   outline: none !important;
 }
+
+.example-section {
+  padding: 10px;
+  padding-bottom: 5px;
+  margin-bottom: 2.5rem;
+}
