@@ -112,11 +112,9 @@ const CONFIG = {
 # TODO
 
 ###### v1.0.0
-- [ ] index.d.ts documentaion
 - [ ] Add example
-- [ ] Tests
 - [ ] Improve add config using functions
 - [x] Change all bootstrap elements to React Bootstrap
-- [ ] Implement the search feature of the sidebar
+- [x] Implement the search feature of the sidebar
 - [x] Proper warning and error display
 - [x] ~Figure out a way when user deleted required props and error is thrown~ (This only happens in react development mode)

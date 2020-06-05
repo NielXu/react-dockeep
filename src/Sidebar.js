@@ -15,6 +15,7 @@ export default class Sidebar extends React.Component {
     this.state = {
       top: false,
       topExpand: false,
+      search: "",
     }
   }
 
@@ -31,13 +32,24 @@ export default class Sidebar extends React.Component {
     this.setState({ top: !mql.matches });
   }
 
+  onSearchChanged = (e) => {
+    this.setState({ search: e.target.value });
+  }
+
   render() {
-    const { components, url } = this.props;
+    let { components, url } = this.props;
+    if(this.state.search) {
+      const match = this.state.search.toLowerCase();
+      components = components.filter(e => {
+        const name = getComponentName(e).toLowerCase();
+        return name.indexOf(match) >= 0;
+      });
+    }
     if(this.state.top) {
       return (
         <div className="topbar-wrapper">
           <div className="topbar-search-wrapper">
-            <input type="text" className="form-control" placeholder="Search..."/>
+            <input type="text" className="form-control" placeholder="Search..." onChange={this.onSearchChanged} value={this.state.search}/>
             <button
               type="button"
               className="btn btn-default topbar-expand-button"
@@ -53,7 +65,7 @@ export default class Sidebar extends React.Component {
               const name = getComponentName(e);
                 return (
                   <Row className="sidebar-list-item" key={name}>
-                    <Link className="sidebar-item-link" to={`/${url}/${name.toLowerCase()}`}>{name}</Link>
+                    <Link className="sidebar-item-link" to={`/${url}/${name.toLowerCase()}`} onClick={() => this.setState({ search: "" })}>{name}</Link>
                   </Row>
                 )
                 })
@@ -66,14 +78,14 @@ export default class Sidebar extends React.Component {
     return (
       <Container fluid>
         <Row className="sidebar-search-wrapper">
-          <input type="text" className="form-control" placeholder="Search..."/>
+          <input type="text" className="form-control" placeholder="Search..." onChange={this.onSearchChanged} value={this.state.search}/>
         </Row>
         {
           components.map((e, i) => {
             const name = getComponentName(e);
             return (
               <Row className="sidebar-list-item" key={name}>
-                <Link className="sidebar-item-link" to={`/${url}/${name.toLowerCase()}`}>{name}</Link>
+                <Link className="sidebar-item-link" to={`/${url}/${name.toLowerCase()}`} onClick={() => this.setState({ search: "" })}>{name}</Link>
               </Row>
             )
           })
