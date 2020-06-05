@@ -58,7 +58,7 @@ export default class Sidebar extends React.Component {
               <FontAwesomeIcon icon={faBars} size="lg"/>
             </button>
           </div>
-          <Collapse in={this.state.topExpand}>
+          <Collapse in={this.state.topExpand || this.state.search}>
             <div className="topbar-content">
             {
               components.map((e, i) => {
