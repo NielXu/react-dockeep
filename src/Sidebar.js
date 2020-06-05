@@ -4,6 +4,7 @@ import { getComponentName } from './tool';
 import { Collapse } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
+import { Container, Row, Col } from 'react-bootstrap';
 import './Sidebar.css';
 
 const mql = window.matchMedia(`(min-width: 768px)`);
@@ -31,7 +32,6 @@ export default class Sidebar extends React.Component {
   }
 
   render() {
-    
     const { components, url } = this.props;
     if(this.state.top) {
       return (
@@ -52,9 +52,9 @@ export default class Sidebar extends React.Component {
               components.map((e, i) => {
               const name = getComponentName(e);
                 return (
-                  <div className="row sidebar-list-item" key={i}>
+                  <Row className="sidebar-list-item" key={name}>
                     <Link className="sidebar-item-link" to={`/${url}/${name.toLowerCase()}`}>{name}</Link>
-                  </div>
+                  </Row>
                 )
                 })
               }
@@ -64,21 +64,21 @@ export default class Sidebar extends React.Component {
       )
     }
     return (
-      <div className="container-fluid">
-        <div className="row sidebar-search-wrapper">
+      <Container fluid>
+        <Row className="sidebar-search-wrapper">
           <input type="text" className="form-control" placeholder="Search..."/>
-        </div>
+        </Row>
         {
           components.map((e, i) => {
             const name = getComponentName(e);
             return (
-              <div className="row sidebar-list-item" key={i}>
+              <Row className="sidebar-list-item" key={name}>
                 <Link className="sidebar-item-link" to={`/${url}/${name.toLowerCase()}`}>{name}</Link>
-              </div>
+              </Row>
             )
           })
         }
-      </div>
+      </Container>
     )
   }
 }

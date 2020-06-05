@@ -4,6 +4,7 @@ import './Layout.css';
 import Sidebar from './Sidebar.js';
 import Router from './Router';
 import Error from './Error';
+import { Container, Row, Col } from 'react-bootstrap';
 
 const CONFIG_REQUIRES = ["components"];
 const COMPONENT_CONFIG_REQUIRES = ["component"];
@@ -43,15 +44,15 @@ export default function Layout({ config, url }) {
   }
 
   return (
-    <div className="container-fluid height-wrapper">
-      <div className="row height-wrapper">
-        <div className="col-md-2 sidebar-wrapper">
+    <Container fluid className="height-wrapper">
+      <Row className="height-wrapper">
+        <Col md="2" className="sidebar-wrapper">
           <Sidebar url={url} components={components}/>
-        </div>
-        <div className="col">
+        </Col>
+        <Col>
           <Router url={url} components={components}/>
-        </div>
-      </div>
-    </div>
+        </Col>
+      </Row>
+    </Container>
   )
 }
