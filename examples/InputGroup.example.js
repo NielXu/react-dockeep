@@ -1,8 +1,5 @@
 import React from 'react';
 
-/**
- * This is an example of InputGroup using Bootstrap styling
- */
 function InputGroup({
   label,
   disabled=false,

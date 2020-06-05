@@ -113,7 +113,7 @@ const CONFIG = {
 
 ###### v1.0.0
 - [ ] Add example
-- [ ] Improve add config using functions
+- [x] ~Improve add config using functions~ (Push to v1.1.0)
 - [x] Change all bootstrap elements to React Bootstrap
 - [x] Implement the search feature of the sidebar
 - [x] Proper warning and error display
