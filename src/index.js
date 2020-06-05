@@ -23,4 +23,4 @@ if(process.env.NODE_ENV === 'local') {
   renderExample();
 }
 
-export { initConfiger, addConfig };
+// export { initConfiger, addConfig };

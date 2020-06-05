@@ -1,30 +1,17 @@
 import React from 'react';
-import { shallowValidate, extract, ERR } from './configer';
+import { shallowValidate, extract } from './configer';
 import { LiveProvider, LiveEditor, LiveError, LivePreview } from 'react-live';
 import { applyPropsCode, getComponentName } from './tool';
 import theme from "prism-react-renderer/themes/github";
 import Error from './Error';
 import './Component.css';
 
-const COMPONENT_CONFIG_REQUIRES = ["component"];
 const COMPONENT_PROPS_DOC_REQUIRES = ["name", "value"];
 
 export default class Component extends React.Component {
   constructor(props) {
     super(props);
-
-    // validation
-    const { config } = props;
-    const validation = shallowValidate(config, COMPONENT_CONFIG_REQUIRES);
-    if(validation) {
-      this.state = {
-        error: `Config missing key: ${validation}`,
-        config: config,
-      };
-      return;
-    }
-
-    this.state = {...this.extractConfig(config)};
+    this.state = {...this.extractConfig(this.props.config)};
   }
 
   extractConfig = (config) => {
