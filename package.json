@@ -4,7 +4,7 @@
   "description": "Present an example for each component in your project including the style and documentation",
   "main": "dist/index.js",
   "scripts": {
-    "build": "webpack",
+    "build": "webpack --config ./webpack.config.js",
     "start": "webpack-dev-server --config ./webpack.dev.js"
   },
   "repository": {
@@ -19,8 +19,7 @@
   "homepage": "https://github.com/NielXu/react-cview#readme",
   "peerDependencies": {
     "react": "^16.6.1",
-    "react-dom": "^16.6.3",
-    "react-router-dom": "^5.0.0"
+    "react-dom": "^16.6.3"
   },
   "dependencies": {
     "@babel/cli": "^7.8.4",
