@@ -115,6 +115,7 @@ To run examples use `npm start` and go to [http://localhost:8080](http://localho
 
 ###### v1.0.0
 - [x] Add example
+- [x] Prevent name duplications
 - [x] ~Improve add config using functions~ (Push to v1.1.0)
 - [x] Change all bootstrap elements to React Bootstrap
 - [x] Implement the search feature of the sidebar

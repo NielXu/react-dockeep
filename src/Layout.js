@@ -5,6 +5,7 @@ import Sidebar from './Sidebar.js';
 import Router from './Router';
 import Error from './Error';
 import { Container, Row, Col } from 'react-bootstrap';
+import { getComponentName } from './tool';
 
 const CONFIG_REQUIRES = ["components"];
 const COMPONENT_CONFIG_REQUIRES = ["component"];
@@ -32,8 +33,11 @@ export default function Layout({ config, url }) {
 
   // Extract components from config
   const components = extract(config, "components");
+  // Check name duplications
+  let names = new Set();
   for(let i=0;i<components.length;i++) {
     const comp = components[i];
+    const name = getComponentName(comp);
     const compValidation = shallowValidate(comp, COMPONENT_CONFIG_REQUIRES);
     if(compValidation) {
       return <Error
@@ -41,6 +45,13 @@ export default function Layout({ config, url }) {
                 message={`Config missing key: ${compValidation}`}
             />
     }
+    if(names.has(name)) {
+      return <Error
+                trace={comp}
+                message={`Duplicated component name: ${name}`}
+            />
+    }
+    names.add(name);
   }
 
   return (
