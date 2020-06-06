@@ -33,6 +33,9 @@ The documentation will be rendered based on the configuration provided, here are
 |doc|false|string|''|The documentation of this prop
 
 # Example
+Here is a screenshot of the examples
+![Example Screenshot](https://github.com/NielXu/react-cdv/blob/master/assets/example.png)
+
 An example of a valid config
 
 ```javascript
