@@ -44,8 +44,18 @@ function getComponentName(config) {
   return extract(config, "name", config.component? config.component.name : "");
 }
 
+/**
+ * Get the last segment from the url, for example `google.com/tab/example` will
+ * return `example`
+ * @param {String} url 
+ */
+function getLastSegmentUrl(url) {
+  return url.split('/').pop();
+}
+
 export {
   applyPropsCode,
   resolveProps,
   getComponentName,
+  getLastSegmentUrl,
 };

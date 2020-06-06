@@ -1,10 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { getComponentName } from './tool';
+import { getComponentName, getLastSegmentUrl } from './tool';
 import { Collapse } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
-import { Container, Row, Col } from 'react-bootstrap';
+import { Container, Row } from 'react-bootstrap';
 import './Sidebar.css';
 
 const mql = window.matchMedia(`(min-width: 768px)`);
@@ -36,6 +36,10 @@ export default class Sidebar extends React.Component {
     this.setState({ search: e.target.value });
   }
 
+  isLinkSelected = (name) => {
+    return name.toLowerCase() === getLastSegmentUrl(window.location.pathname);
+  }
+
   render() {
     let { components, url } = this.props;
     if(this.state.search) {
@@ -65,7 +69,13 @@ export default class Sidebar extends React.Component {
               const name = getComponentName(e);
                 return (
                   <Row className="sidebar-list-item" key={name}>
-                    <Link className="sidebar-item-link" to={`/${url}/${name.toLowerCase()}`} onClick={() => this.setState({ search: "" })}>{name}</Link>
+                    <Link
+                      className={this.isLinkSelected(name)? "sidebar-item-active-link" : "sidebar-item-link"}
+                      to={`/${url}/${name.toLowerCase()}`}
+                      onClick={() => this.setState({ search: "" })}
+                    >
+                        {name}
+                    </Link>
                   </Row>
                 )
                 })
@@ -85,7 +95,13 @@ export default class Sidebar extends React.Component {
             const name = getComponentName(e);
             return (
               <Row className="sidebar-list-item" key={name}>
-                <Link className="sidebar-item-link" to={`/${url}/${name.toLowerCase()}`} onClick={() => this.setState({ search: "" })}>{name}</Link>
+                <Link
+                  className={this.isLinkSelected(name)? "sidebar-item-active-link" : "sidebar-item-link"}
+                  to={`/${url}/${name.toLowerCase()}`}
+                  onClick={() => this.setState({ search: "" })}
+                >
+                  {name}
+                </Link>
               </Row>
             )
           })

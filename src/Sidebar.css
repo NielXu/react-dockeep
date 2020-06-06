@@ -18,6 +18,17 @@
   overflow: hidden;
 }
 
+.sidebar-item-active-link {
+  color: #1a1a1a;
+  overflow: hidden;
+  font-weight: 500;
+}
+
+.sidebar-item-active-link:hover {
+  text-decoration: none;
+  color: #1a1a1a;
+}
+
 .sidebar-item-link:hover {
   text-decoration: none;
   color: #999;
