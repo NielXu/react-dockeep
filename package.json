@@ -1,7 +1,7 @@
 {
-  "name": "react-cview",
+  "name": "react-cdv",
   "version": "1.0.0",
-  "description": "Present an example for each component in your project including the style and documentation",
+  "description": "React-Component-Documentation-Viewer allows user to create documentation for their components and view them directly with custom configurations in their projects.",
   "main": "dist/index.js",
   "scripts": {
     "build": "webpack --config ./webpack.config.js",
@@ -9,14 +9,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/NielXu/react-cview.git"
+    "url": "git+https://github.com/NielXu/react-cdv.git"
   },
   "author": "Daniel Xu",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/NielXu/react-cview/issues"
+    "url": "https://github.com/NielXu/react-cdv/issues"
   },
-  "homepage": "https://github.com/NielXu/react-cview#readme",
+  "homepage": "https://github.com/NielXu/react-cdv#readme",
   "peerDependencies": {
     "react": "^16.6.1",
     "react-dom": "^16.6.3"

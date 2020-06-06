@@ -1,47 +1,11 @@
-# react-cview
-react-cview allows user to create documentation for their components and view them directly with custom configurations.
-
-# Get started
-react-cview is not published to npm yet, run the following commands to test it in your local project:
-
-```sh
-git clone https://github.com/NielXu/react-cview.git
-cd react-cview
-npm install
-npm run build
-npm link
-
-cd /path/to/your/local/project
-npm link react-cview
-```
-
-Then you can import react-cview in your index.js and start using it
-
-```javascript
-import React from 'react';
-import ReactDOM from 'react-dom';
-import CView from 'react-cview';
-
-const CONFIG = {...}
-
-ReactDOM.render(
-  <React.StrictMode>
-    <CView config={CONFIG}>
-      <App />
-    </CView>
-  </React.StrictMode>,
-  document.getElementById('root')
-);
-```
-
-To develop at local simply do `npm run build` after you modify the files under src folder, then the component will be updated automatically.
-
+# react-cdv
+react-cdv stands for react-component-documentation-viewer, it allows user to create documentation for their components and view them directly with custom configurations in their projects.
 
 # Props
 |Name|required|type|default|description|
 |---|---|---|---|---|
 |config|true|object||The config that controls the components and documentation
-|url|false|string|'cview'|The url that will be used to browse the components
+|url|false|string|'doc'|The url that will be used to browse the components
 
 ### Config
 The documentation will be rendered based on the configuration provided, here are the fields that can be configured.
@@ -109,7 +73,7 @@ const CONFIG = {
 }
 ```
 
-To run examples use `npm start` and go to [http://localhost:8080](http://localhost:8080) in your browser, see [examples](https://github.com/NielXu/react-cview/tree/master/examples) folder for more information
+To run examples use `npm start` and go to [http://localhost:8080](http://localhost:8080) in your browser, see [examples](https://github.com/NielXu/react-cdv/tree/master/examples) folder for more information
 
 # TODO
 

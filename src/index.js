@@ -7,7 +7,7 @@ import { renderExample } from '../examples/index.example';
 import 'bootstrap/dist/css/bootstrap.css';
 import './index.css';
 
-export default function CView({ children, config, url="cview" }) {
+export default function DocView({ children, config, url="doc" }) {
   return (
     <BrowserRouter>
       <Switch>
