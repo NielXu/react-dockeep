@@ -2,8 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Layout from './Layout';
 import { initConfiger, addConfig } from './configer';
-import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
-import { renderExample } from '../examples/index.example';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { renderExample } from '../example/index.example';
 import 'bootstrap/dist/css/bootstrap.css';
 import './index.css';
 
