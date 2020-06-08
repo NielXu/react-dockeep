@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import DocView from '../src/index';
+import Doc from '../src/index';
 import { Redirect } from 'react-router-dom';
 import { InputGroupConfig } from './InputGroup.example';
 import { ModalConfig } from './Modal.example';
@@ -17,9 +17,9 @@ const CONFIG = {
 function renderExample() {
   ReactDOM.render(
     <React.StrictMode>
-      <DocView config={CONFIG}>
+      <Doc config={CONFIG}>
         <Redirect to="/doc"/>
-      </DocView>
+      </Doc>
     </React.StrictMode>,
     document.getElementById('root')
   );

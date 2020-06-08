@@ -7,7 +7,7 @@ import { renderExample } from '../example/index.example';
 import 'bootstrap/dist/css/bootstrap.css';
 import './index.css';
 
-export default function DocView({ children, config, url="doc" }) {
+export default function Doc({ children, config, url="doc" }) {
   return (
     <BrowserRouter>
       <Switch>

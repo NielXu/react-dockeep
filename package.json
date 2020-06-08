@@ -1,7 +1,7 @@
 {
-  "name": "react-cdv",
+  "name": "react-dockeep",
   "version": "1.0.0",
-  "description": "React-Component-Documentation-Viewer allows user to create documentation for their components and view them directly with custom configurations in their projects.",
+  "description": "React documentation keeper allows user to create documentation for their components and view them directly with custom configurations in their projects.",
   "main": "dist/index.js",
   "scripts": {
     "build": "webpack --config ./webpack.config.js",
@@ -9,14 +9,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/NielXu/react-cdv.git"
+    "url": "git+https://github.com/NielXu/react-dockeep.git"
   },
   "author": "Daniel Xu",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/NielXu/react-cdv/issues"
+    "url": "https://github.com/NielXu/react-dockeep/issues"
   },
-  "homepage": "https://github.com/NielXu/react-cdv#readme",
+  "homepage": "https://github.com/NielXu/react-dockeep#readme",
   "peerDependencies": {
     "react": "^16.6.1",
     "react-dom": "^16.6.3"
