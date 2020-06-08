@@ -13,7 +13,7 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import Doc from 'react-dockeep';
 
-const CONFIG = {...}
+const CONFIG = {/* Your configurations here */}
 
 ReactDOM.render(
   <React.StrictMode>
