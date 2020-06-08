@@ -12,7 +12,7 @@
     "url": "git+https://github.com/NielXu/react-dockeep.git"
   },
   "author": "Daniel Xu",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/NielXu/react-dockeep/issues"
   },
