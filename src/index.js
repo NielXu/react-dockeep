@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import Layout from './Layout';
 import { initConfiger, addConfig } from './configer';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
