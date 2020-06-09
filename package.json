@@ -1,6 +1,6 @@
 {
   "name": "react-dockeep",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "React documentation keeper allows user to create documentation for their components and view them directly with custom configurations in their projects.",
   "main": "dist/index.js",
   "scripts": {
