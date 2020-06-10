@@ -106,7 +106,7 @@ To run examples use `npm start` and go to [http://localhost:8080](http://localho
 - [x] ~Figure out a way when user deleted required props and error is thrown~ (This only happens in react development mode)
 
 ###### v1.1.0
-- [ ] Config using functions
+- [x] Config using functions
 - [ ] Allow users to handle routing by themselves
 - [ ] Allow users to write example code by themselves
 - [ ] Allow users to control sections by themselves
