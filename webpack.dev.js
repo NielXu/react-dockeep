@@ -2,7 +2,7 @@ const path = require('path');
 const webpack = require('webpack');
 
 module.exports = {
-  entry: './src/index.js',
+  entry: './example/index.example.js',
   output: {
     path: path.resolve('dist'),
     filename: 'main.js'
