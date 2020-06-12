@@ -23,6 +23,7 @@ function InputGroup({
 export const InputGroupConfig = {
   component: InputGroup,
   description: "This is an example of InputGroup using Bootstrap styling",
+  code: `<InputGroup label="Label" disabled={false} placeholder="placeholder"/>`,
   props: [
     {
       name: "label",

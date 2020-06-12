@@ -23,11 +23,14 @@ export default class Component extends React.Component {
     const componentDesc = extract(config, "description", "No description");
     // Extract the props(optional)
     const componentProps = extract(config, "props", []);
+    // Extract the code(optional)
+    const code = extract(config, "code", "");
     return {
       name: name,
       component: component,
       description: componentDesc,
       props: componentProps,
+      code: code,
     }
   }
 
@@ -102,10 +105,14 @@ export default class Component extends React.Component {
   renderExample() {
     const name = this.state.name;
     const props = this.state.props;
+    const code = this.state.code;
     return (
       <div className="example-section">
         <h1>Example</h1>
-        <LiveProvider code={applyPropsCode(name, props)} scope={{[name]: this.state.component}}>
+        <LiveProvider
+          code={code? code : applyPropsCode(name, props)}
+          scope={{[name]: this.state.component}}
+        >
           <LivePreview className="component-box"/>
           <LiveError className="component-error"/>
           <LiveEditor theme={theme} className="component-editor"/>

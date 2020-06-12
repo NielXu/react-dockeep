@@ -45,6 +45,7 @@ The documentation will be rendered based on the configuration provided, here are
 |name|false|string|The given component's name|The name of the component
 |description|false|string|'No description'|The description of the component
 |props|false|array|[]|A list of props that will be applied to the component with documentation
+|code|false|string||The example code, please notice that the name of the tag must match the component name
 
 ### props
 |Name|required|type|default|description|
@@ -107,6 +108,6 @@ To run examples use `npm start` and go to [http://localhost:8080](http://localho
 
 ###### v1.1.0
 - [x] Config using functions
-- [ ] Allow users to handle routing by themselves
-- [ ] Allow users to write example code by themselves
-- [ ] Allow users to control sections by themselves
+- [ ] ~Allow users to handle routing by themselves~ (Push to v1.2.0)
+- [x] Allow users to write example code by themselves
+- [ ] ~Allow users to control sections by themselves~ (Push to v1.2.0)
