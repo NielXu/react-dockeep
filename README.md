@@ -108,6 +108,6 @@ To run examples use `npm start` and go to [http://localhost:8080](http://localho
 
 ###### v1.1.0
 - [x] Config using functions
-- [ ] ~Allow users to handle routing by themselves~ (Push to v1.2.0)
+- [x] ~Allow users to handle routing by themselves~ (Push to v1.2.0)
 - [x] Allow users to write example code by themselves
-- [ ] ~Allow users to control sections by themselves~ (Push to v1.2.0)
+- [x] ~Allow users to control sections by themselves~ (Push to v1.2.0)
