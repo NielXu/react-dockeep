@@ -1,37 +1,39 @@
 export const ERR = 0;
 
-let config;
+let config = {
+  components: [],
+};
 
 /**
- * Initialize the configer, this should be
- * called only once when the app started
+ * Merge two configs into one and return the result, the
+ * original configs will not be affected
  * 
- * @optional `cols` Number of columns per row, default is 2
- * @optional `components` Initial components
+ * @param {Object} confa 
+ * @param {Object} confb 
  */
-function initConfiger(cols=2, components=[]) {
-  config = {
-    cols: cols,
-    components,
+function mergeConfig(confa, confb) {
+  let confc = {
+    components: [],
   };
+  confa.components.forEach(e => {
+    confc.components.push(e);
+  });
+  confb.components.forEach(e => {
+    confc.components.push(e);
+  });
+  return confc;
 }
 
 /**
- * Add a config to the configer
+ * Add a component config to the configer
  * 
- * @require `component` The component
- * @optional `props` Props applied to the component, default is empty
- * @optional `description` Description of the component, default is 'No description'
+ * @param {Object} componentConfig The config object
  */
-function addConfig(component, props={}, description="No description") {
+function addComponentConfig(componentConfig) {
   if(!config) {
     return ERR;
   }
-  config.components.push({
-    component: component,
-    description: description,
-    props: props,
-  });
+  config.components.push(componentConfig);
 }
 
 /**
@@ -97,7 +99,8 @@ function _hasKey(config, key) {
 export {
   extract,
   shallowValidate,
-  initConfiger,
-  addConfig,
-  getConfig
+  
+  addComponentConfig,
+  getConfig,
+  mergeConfig,
 };

@@ -1,8 +1,7 @@
 import React from 'react';
 import Layout from './Layout';
-import { initConfiger, addConfig } from './configer';
+import { addComponentConfig } from './configer';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import { renderExample } from '../example/index.example';
 import 'bootstrap/dist/css/bootstrap.css';
 import './index.css';
 
@@ -17,9 +16,6 @@ export default function Doc({ children, config, url="doc" }) {
   )
 }
 
-// Local examples
-if(process.env.NODE_ENV === 'local') {
-  renderExample();
-}
-
-// export { initConfiger, addConfig };
+export {
+  addComponentConfig,
+};
