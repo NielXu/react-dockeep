@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallowValidate, extract, getConfig, ERR } from './configer';
+import { shallowValidate, extract, getConfig, ERR, mergeConfig } from './configer';
 import './Layout.css';
 import Sidebar from './Sidebar.js';
 import Router from './Router';
@@ -12,14 +12,12 @@ const COMPONENT_CONFIG_REQUIRES = ["component"];
 
 export default function Layout({ config, url }) {
   if(!config) {
-    if(getConfig() === ERR) {
-      return <Error
-              message={`No config provided`}
-            />
-    }
-    else {
-      config = getConfig();
-    }
+    // If no config provided from prop, use config stored in configer
+    config = getConfig();
+  }
+  else {
+    // Otherwise, merge the config from prop and the one stored in configer
+    config = mergeConfig(config, getConfig());
   }
 
   // Shallow validate the config
