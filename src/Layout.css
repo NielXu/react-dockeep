@@ -10,7 +10,7 @@
 
 .main-wrapper {
   overflow: hidden;
-  overflow-y: scroll;
+  overflow-y: auto;
   height: 100%;
   padding-top: 10px;
 }

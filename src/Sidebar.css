@@ -9,7 +9,7 @@
   background-color: #f7f7f7;
   border-right: 1px solid #ececec;
   overflow: hidden;
-  overflow-y: scroll;
+  overflow-y: auto;
   height: 100%;
 }
 
