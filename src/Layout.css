@@ -7,3 +7,10 @@
   display: flex;
   flex-wrap: nowrap;
 }
+
+.main-wrapper {
+  overflow: hidden;
+  overflow-y: scroll;
+  height: 100%;
+  padding-top: 10px;
+}

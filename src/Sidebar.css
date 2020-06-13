@@ -1,6 +1,16 @@
 .sidebar-wrapper {
   background-color: #f7f7f7;
   border-right: 1px solid #ececec;
+  overflow: hidden;
+  overflow-y: scroll;
+}
+
+.sidebar-height-wrapper {
+  background-color: #f7f7f7;
+  border-right: 1px solid #ececec;
+  overflow: hidden;
+  overflow-y: scroll;
+  height: 100%;
 }
 
 .sidebar-list-item {
