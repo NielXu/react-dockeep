@@ -1,8 +1,6 @@
 export const ERR = 0;
 
-let config = {
-  components: [],
-};
+let config = {};
 
 /**
  * Merge two configs into one and return the result, the
@@ -12,15 +10,23 @@ let config = {
  * @param {Object} confb 
  */
 function mergeConfig(confa, confb) {
-  let confc = {
-    components: [],
-  };
-  confa.components.forEach(e => {
-    confc.components.push(e);
-  });
-  confb.components.forEach(e => {
-    confc.components.push(e);
-  });
+  let confc = {};
+  if(_hasKey(confa, 'components')) {
+    if(!_hasKey(confc, 'components')) {
+      confc = { components: [] }
+    }
+    confa.components.forEach(e => {
+      confc.components.push(e);
+    });
+  }
+  if(_hasKey(confb, 'components')) {
+    if(!_hasKey(confc, 'components')) {
+      confc = { components: [] }
+    }
+    confb.components.forEach(e => {
+      confc.components.push(e);
+    });
+  }
   return confc;
 }
 
@@ -30,8 +36,8 @@ function mergeConfig(confa, confb) {
  * @param {Object} componentConfig The config object
  */
 function addComponentConfig(componentConfig) {
-  if(!config) {
-    return ERR;
+  if(!_hasKey(config, 'components')) {
+    config = { components: [] }
   }
   config.components.push(componentConfig);
 }
